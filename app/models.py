@@ -56,3 +56,14 @@ class ItemModel:
         conn.commit()
         cursor.close()
         conn.close()
+
+    def create_indexes():
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("""
+        CREATE INDEX IF NOT EXISTS idx_items_name ON items (name);
+        CREATE INDEX IF NOT EXISTS idx_items_id ON items (id);
+        """)
+        conn.commit()
+        cursor.close()
+        conn.close()
